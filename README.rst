@@ -6,18 +6,25 @@ To implement, add 'heartbeat' to INSTALLED_APPS in your Django settings file.
 
 A control file is used for signalling.  Use the following setting in your Django settings file to specify the path for the control file:
 
-  HEARTBEAT_FILENAME = '/etc/heartbeat'
+::
+  
+    HEARTBEAT_FILENAME = '/etc/heartbeat'
 
 If this file exists and contains a 0, heartbeat will respond with a 503 to let a load balancer know to stop sending new requests to the server because the server is going down for maintenance.  
 
 To set, use eg: 
-  $ echo 0 > etc/heartbeat
+::
+
+    $ echo 0 > etc/heartbeat
 
 Or you can use the Django management commands:
-  $ bin/django heartbeat down
-  $ bin/django heartbeat up
+::    
+
+    $ bin/django heartbeat down
+    $ bin/django heartbeat up
 
 Used with HAProxy, your HAProxy config file might contain this:
+::
 
     backend site
         balance roundrobin

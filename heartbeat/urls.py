@@ -1,5 +1,7 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
-urlpatterns = patterns('heartbeat.views',
-    url(r'^status/$', 'status'),
-)
+from heartbeat import views
+
+urlpatterns = [
+    url(r'^status/$', views.status, name='heartbeat_status'),
+]

@@ -14,23 +14,23 @@ class Command(BaseCommand):
             try:
                 if os.path.exists(settings.HEARTBEAT_FILENAME):
                     os.unlink(settings.HEARTBEAT_FILENAME)
-                    
+
                 self.stdout.write('\nThis server is now available and should start ' \
                     'receiving new requests shortly.\n')
-            except OSError, e:
+            except OSError as e:
                 raise CommandError('FAILED to delete the heartbeat file: %s' % e)
             except:
                 raise CommandError('FAILED to delete the heartbeat file: %s' % traceback.format_exc())
-        
+
         if 'down' in args:
             try:
                 open(settings.HEARTBEAT_FILENAME, 'w').write('0')
-                    
+
                 self.stdout.write('\nThis server is now flagged for maintenance and ' \
                     'should stop receiving new requests shortly.\n' \
                     'Please allow a few moments for current requests to finish ' \
                     'before stopping the server.\n')
-            except OSError, e:
+            except OSError as e:
                 raise CommandError('FAILED to write the heartbeat file: %s' % e)
             except:
                 raise CommandError('FAILED to write the heartbeat file: %s' % traceback.format_exc())

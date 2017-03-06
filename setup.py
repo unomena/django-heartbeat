@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-heartbeat',
-    version='0.0.4',
+    version='0.0.5',
     description='Django Heartbeat Application',
     author='Unomena',
     author_email='dev@unomena.com',
